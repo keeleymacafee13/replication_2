@@ -149,197 +149,6 @@ $(document).ready(function () {
 ##       chisquare df p.value
 ## strat       6.6 14   0.949
 ## ---
-## Signif. codes:  0 '***' 0.001 '** ' 0.01 '*  ' 0.05 '.  ' 0.1 '   ' 1 
-##                  strata      unstrat                                                    
-##                  stat      missing=0    missing=1     std.diff         z                
-## vars                                                                                    
-## liberal                 0.43902      0.39437      -0.09055     -0.73441                 
-## republican              0.17886      0.16901      -0.02610     -0.21068                 
-## obama.disapprove        0.30081      0.28873      -0.02636     -0.21479                 
-## ride.everyday           0.87805      0.78873      -0.24022     -1.92758     .           
-## voted.2010              0.73984      0.57042      -0.35884     -2.87637     **          
-## romney.voter            0.24390      0.27465      0.06993      0.56771                  
-## Hispanics               1.21951      1.20423      -0.02483     -0.21236                 
-## age                     25.54472     21.07746     -0.37290     -2.98750     **          
-## residency.new           7.30634      7.48014      0.03084      0.24981                  
-## hispanic.new            0.04065      0.04225      0.00746      0.06513                  
-## gender                  1.43902      1.38028      -0.11915     -0.96870                 
-## college                 0.87805      0.84507      -0.09182     -0.77101                 
-## us.born                 0.82114      0.76761      -0.13264     -1.06961                 
-## income.new              145719.51220 136059.85915 -0.12932     -1.04703                 
-## male                    0.56098      0.61972      0.11915      0.96870                  
-## ---Overall Test---
-##         chisquare df p.value
-## unstrat      20.4 14   0.119
-## ---
-## Signif. codes:  0 '***' 0.001 '** ' 0.01 '*  ' 0.05 '.  ' 0.1 '   ' 1 
-##                  strata      unstrat                                                    
-##                  stat      missing=0    missing=1     std.diff         z                
-## vars                                                                                    
-## numberim                2.96721      3.20423      0.22851      1.85208      .           
-## Remain                  2.77049      2.90845      0.09909      0.80204                  
-## Englishlan              2.48361      2.29577      -0.13347     -1.07965                 
-## liberal                 0.43443      0.39437      -0.08122     -0.65786                 
-## republican              0.18033      0.16901      -0.02999     -0.24116                 
-## obama.disapprove        0.30328      0.28873      -0.03174     -0.25778                 
-## ride.everyday           0.88525      0.78873      -0.25958     -2.09388     *           
-## voted.2010              0.73770      0.57042      -0.35432     -2.83147     **          
-## romney.voter            0.24590      0.27465      0.06539      0.52898                  
-## Hispanics               1.22131      1.20423      -0.02775     -0.23644                 
-## age                     25.46721     21.07746     -0.36643     -2.92900     **          
-## residency.new           7.30038      7.48014      0.03190      0.25733                  
-## hispanic.new            0.04098      0.04225      0.00591      0.05138                  
-## gender                  1.43443      1.38028      -0.10982     -0.89169                 
-## college                 0.87705      0.84507      -0.08904     -0.74482                 
-## us.born                 0.82787      0.76761      -0.14931     -1.20795                 
-## income.new              144864.75410 136059.85915 -0.11788     -0.95437                 
-## male                    0.56557      0.61972      0.10982      0.89169                  
-## ---Overall Test---
-##         chisquare df p.value
-## unstrat      23.9 17   0.123
-## ---
-## Signif. codes:  0 '***' 0.001 '** ' 0.01 '*  ' 0.05 '.  ' 0.1 '   ' 1 
-##           strata   unstrat                                 
-##           stat   missing=0 missing=1 std.diff    z         
-## vars                                                       
-## treatment            0.447     0.524    0.153   1.253      
-## ---Overall Test---
-##         chisquare df p.value
-## unstrat      1.57  1    0.21
-## ---
-## Signif. codes:  0 '***' 0.001 '** ' 0.01 '*  ' 0.05 '.  ' 0.1 '   ' 1</code></pre>
-<pre><code>## beginning inference 
-##     variable subset   N                ate greater.p.value lesser.p.value
-## 1   numberim    all 106 0.0898125707655309       0.0078125      0.9921875
-## 2     Remain    all 109 0.0727315441205261        0.015625       0.984375
-## 3 Englishlan    all 109 0.0299129031275695      0.26953125     0.73046875
-## 4   numberim no.car  98 0.0825966646148233      0.01171875     0.98828125
-## 5     Remain no.car 100 0.0983554695104804        0.015625       0.984375
-## 6 Englishlan no.car 100 0.0433034458889442      0.15234375     0.84765625
-##                x.sd            x.mean
-## 1 0.271834460776405 0.489130434782609
-## 2 0.362030665966436 0.440677966101695
-## 3 0.363553015812534  0.61864406779661
-## 4 0.276280405627494  0.47877358490566
-## 5   0.3524195653157 0.412037037037037
-## 6 0.369610515536121 0.599537037037037</code></pre>
-<pre><code>## beginning dose response inference 
-##     variable subset  N                ate            x.mean
-## 1   numberim     ta 51  0.128398004021747 0.504385964912281
-## 2     Remain     ta 51  0.113297832725106 0.451754385964912
-## 3 Englishlan     ta 51 0.0506628435242422  0.62719298245614
-## 4   numberim     tb 51 0.0702224052718288 0.474137931034483
-## 5     Remain     tb 54 0.0352650494159929 0.430327868852459
-## 6 Englishlan     tb 54   0.01740790655885 0.610655737704918
-##                x.sd      quantile.lower     quantile.upper
-## 1 0.265128119594091  0.0359717401834773  0.220824267860017
-## 2 0.385097959740754 -0.0271679675403221  0.253763632990535
-## 3 0.341094636982826 -0.0561867063120087  0.157512393360493
-## 4 0.279762019686022 -0.0487068209385605  0.189151631482218
-## 5 0.341964750684018 -0.0553158692722372  0.125845968104223
-## 6  0.38601756804779 -0.0639857987111565 0.0988016118288565
-## beginning ideology subset inference 
-##     variable             subset  N              ate            x.mean
-## 1   numberim      liberals.only 54 0.01740790655885 0.587962962962963
-## 2     Remain      liberals.only 54 0.01740790655885 0.587962962962963
-## 3 Englishlan      liberals.only 54 0.01740790655885 0.587962962962963
-## 4   numberim     moderates.only 54 0.01740790655885 0.587962962962963
-## 5     Remain     moderates.only 54 0.01740790655885 0.587962962962963
-## 6 Englishlan     moderates.only 54 0.01740790655885 0.587962962962963
-## 7   numberim conservatives.only 54 0.01740790655885 0.587962962962963
-## 8     Remain conservatives.only 54 0.01740790655885 0.587962962962963
-## 9 Englishlan conservatives.only 54 0.01740790655885 0.587962962962963
-##                x.sd      quantile.lower     quantile.upper
-## 1 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 2 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 3 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 4 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 5 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 6 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 7 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 8 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## 9 0.392011646099765 -0.0639857987111565 0.0988016118288565
-## beginning friends response inference 
-##     variable         subset  N                 ate            x.mean
-## 1   numberim    low.friends 23   0.142694063926941 0.492857142857143
-## 2     Remain    low.friends 24   0.201612903225806 0.409722222222222
-## 3 Englishlan    low.friends 24   0.104838709677419 0.583333333333333
-## 4   numberim   high.friends 27   0.037162162162162 0.397435897435897
-## 5     Remain   high.friends 28  0.0150602409638554               0.4
-## 6 Englishlan   high.friends 28  -0.036144578313253               0.6
-## 7   numberim middle.friends 29  0.0360778443113772           0.58125
-## 8     Remain middle.friends 30   0.152027027027027 0.518292682926829
-## 9 Englishlan middle.friends 30 -0.0337837837837839 0.670731707317073
-##                x.sd      quantile.lower     quantile.upper
-## 1 0.281054437144578  0.0305705567263788  0.254817571127503
-## 2 0.364264316209387   0.047001008064516  0.356224798387097
-## 3 0.363514589999985  0.0567396313364054  0.152937788018433
-## 4  0.17879299922592 -0.0390465038902541  0.113370828214578
-## 5  0.35716117169158 -0.0685767624067699 0.0986972443344808
-## 6 0.383138188901696 -0.0882245499856569 0.0159353933591509
-## 7 0.312083055184567 -0.0325475104984836  0.104703199121238
-## 8 0.359644980772875  0.0910151222651222  0.213038931788932
-## 9 0.351065451475237  -0.185573865720925  0.118006298153357
-## beginning income subset inference 
-##     variable        subset  N                 ate            x.mean
-## 1   numberim    low.income 25               0.125               0.5
-## 2     Remain    low.income 26   0.236486486486486         0.4296875
-## 3 Englishlan    low.income 26 -0.0202702702702702         0.5859375
-## 4   numberim middle.income 50  0.0906625272925765 0.491228070175439
-## 5     Remain middle.income 53  0.0364309603440039 0.413793103448276
-## 6 Englishlan middle.income 53  0.0816411849020544 0.581896551724138
-## 7   numberim   high.income 14  0.0799769850402762 0.472222222222222
-## 8     Remain   high.income 15   0.101993865030675 0.508928571428571
-## 9 Englishlan   high.income 15 -0.0789877300613496 0.732142857142857
-##                x.sd       quantile.lower     quantile.upper
-## 1 0.258198889747161 -0.00116586538461547  0.251165865384615
-## 2 0.343337362305413   0.0676691973566972  0.405303775616275
-## 3 0.351318799943226    -0.15800778050778   0.11746723996724
-## 4 0.294915666973741   0.0397412997630163  0.141583754822137
-## 5 0.382029793943319  -0.0271839226334634  0.100045843321471
-## 6 0.387264164325021   0.0226006004154981  0.140681769388611
-## 7 0.243505383502854   0.0461570411392405  0.113796928941312
-## 8 0.343471809029334   0.0468060106432423  0.157181719418107
-## 9 0.311274050302197   -0.202502643381669 0.0445271832589701</code></pre>
-<pre><code>## beginning inference 
-## Too many permutations to use exact method.
-## Defaulting to approximate method.
-## Increase maxiter to at least 4537567650 to perform exact estimation.
-## Too many permutations to use exact method.
-## Defaulting to approximate method.
-## Increase maxiter to at least 9075135300 to perform exact estimation.
-## Too many permutations to use exact method.
-## Defaulting to approximate method.
-## Increase maxiter to at least 9075135300 to perform exact estimation.
-##     variable    subset  N                ate greater.p.value
-## 1   numberim all.prime 35 0.0169249529219276          0.3019
-## 2     Remain all.prime 36 0.0232323232323228          0.4317
-## 3 Englishlan all.prime 36 0.0282828282828281          0.3086
-##   lesser.p.value              x.sd            x.mean
-## 1         0.6981 0.199263349246521              0.55
-## 2         0.5683 0.288932765288298 0.395833333333333
-## 3         0.6914   0.3034196632776 0.722222222222222</code></pre>
-<pre><code>##                  strata        strat                                                    
-##                  stat    treatment=0  treatment=1     std.diff         z                
-## vars                                                                                    
-## liberal                 0.46597      0.46904      0.00614      0.02995                  
-## republican              0.16723      0.18660      0.05014      0.24252                  
-## obama.disapprove        0.27113      0.29404      0.04956      0.23745                  
-## ride.everyday           0.84976      0.89973      0.15158      0.72286                  
-## voted.2010              0.76523      0.66018      -0.23795     -1.12124                 
-## romney.voter            0.24430      0.21542      -0.06671     -0.33702                 
-## Hispanics.x             0.05816      0.04865      -0.07075     -0.33457                 
-## age                     44.66037     40.42895     -0.35326     -1.63408                 
-## residency.new           8.21673      7.07118      -0.19139     -0.90718                 
-## hispanic.new            0.02820      0.05103      0.11491      0.58292                  
-## college                 0.88599      0.86472      -0.06461     -0.30233                 
-## income.new              144724.04374 138094.39975 -0.08747     -0.44455                 
-## male                    0.60446      0.60166      -0.00560     -0.02692                 
-## white                   0.90963      0.83356      -0.23850     -1.24865                 
-## ---Overall Test---
-##       chisquare df p.value
-## strat       6.6 14   0.949
-## ---
 ## Signif. codes:  0 '***' 0.001 '** ' 0.01 '*  ' 0.05 '.  ' 0.1 '   ' 1</code></pre>
 <pre><code>##                  strata      unstrat                                                    
 ##                  stat      missing=0    missing=1     std.diff         z                
@@ -399,6 +208,359 @@ $(document).ready(function () {
 ## unstrat      1.57  1    0.21
 ## ---
 ## Signif. codes:  0 '***' 0.001 '** ' 0.01 '*  ' 0.05 '.  ' 0.1 '   ' 1</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#tazyhmiuvz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+}
+
+#tazyhmiuvz .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+}
+
+#tazyhmiuvz .gt_title {
+  color: #000000;
+  font-size: 125%;
+  /* heading.title.font.size */
+  padding-top: 4px;
+  /* heading.top.padding */
+  padding-bottom: 1px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tazyhmiuvz .gt_subtitle {
+  color: #000000;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  padding-top: 1px;
+  padding-bottom: 4px;
+  /* heading.bottom.padding */
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tazyhmiuvz .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* heading.border.bottom.color */
+}
+
+#tazyhmiuvz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tazyhmiuvz .gt_col_heading {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 16px;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  vertical-align: middle;
+  padding: 10px;
+  margin: 10px;
+}
+
+#tazyhmiuvz .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#tazyhmiuvz .gt_group_heading {
+  padding: 8px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* stub_group.background.color */
+  font-size: 16px;
+  /* stub_group.font.size */
+  font-weight: initial;
+  /* stub_group.font.weight */
+  border-top-style: solid;
+  /* stub_group.border.top.style */
+  border-top-width: 2px;
+  /* stub_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* stub_group.border.top.color */
+  border-bottom-style: solid;
+  /* stub_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* stub_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* stub_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#tazyhmiuvz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* stub_group.background.color */
+  font-size: 16px;
+  /* stub_group.font.size */
+  font-weight: initial;
+  /* stub_group.font.weight */
+  border-top-style: solid;
+  /* stub_group.border.top.style */
+  border-top-width: 2px;
+  /* stub_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* stub_group.border.top.color */
+  border-bottom-style: solid;
+  /* stub_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* stub_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* stub_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#tazyhmiuvz .gt_striped {
+  background-color: #f2f2f2;
+}
+
+#tazyhmiuvz .gt_row {
+  padding: 10px;
+  /* row.padding */
+  margin: 10px;
+  vertical-align: middle;
+}
+
+#tazyhmiuvz .gt_stub {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #A8A8A8;
+  padding-left: 12px;
+}
+
+#tazyhmiuvz .gt_stub.gt_row {
+  background-color: #FFFFFF;
+}
+
+#tazyhmiuvz .gt_summary_row {
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  padding: 6px;
+  /* summary_row.padding */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+}
+
+#tazyhmiuvz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#tazyhmiuvz .gt_table_body {
+  border-top-style: solid;
+  /* field.border.top.style */
+  border-top-width: 2px;
+  /* field.border.top.width */
+  border-top-color: #A8A8A8;
+  /* field.border.top.color */
+  border-bottom-style: solid;
+  /* field.border.bottom.style */
+  border-bottom-width: 2px;
+  /* field.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* field.border.bottom.color */
+}
+
+#tazyhmiuvz .gt_footnote {
+  font-size: 90%;
+  /* footnote.font.size */
+  padding: 4px;
+  /* footnote.padding */
+}
+
+#tazyhmiuvz .gt_sourcenote {
+  font-size: 90%;
+  /* sourcenote.font.size */
+  padding: 4px;
+  /* sourcenote.padding */
+}
+
+#tazyhmiuvz .gt_center {
+  text-align: center;
+}
+
+#tazyhmiuvz .gt_left {
+  text-align: left;
+}
+
+#tazyhmiuvz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tazyhmiuvz .gt_font_normal {
+  font-weight: normal;
+}
+
+#tazyhmiuvz .gt_font_bold {
+  font-weight: bold;
+}
+
+#tazyhmiuvz .gt_font_italic {
+  font-style: italic;
+}
+
+#tazyhmiuvz .gt_super {
+  font-size: 65%;
+}
+
+#tazyhmiuvz .gt_footnote_glyph {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="tazyhmiuvz" style="overflow-x:auto;"><!--gt table start-->
+<table class='gt_table'>
+<thead>
+<tr>
+<th colspan='5' class='gt_heading gt_title gt_font_normal gt_center' >Table 2. Covariate balance across treatment conditions</th>
+</tr>
+<tr>
+<th colspan='5' class='gt_heading gt_subtitle gt_font_normal gt_center gt_bottom_border' ></th>
+</tr>
+</thead>
+<tr>
+<th class='gt_col_heading gt_left' rowspan='1' colspan='1'>Condition</th>
+<th class='gt_col_heading gt_right' rowspan='1' colspan='1'>Control</th>
+<th class='gt_col_heading gt_right' rowspan='1' colspan='1'>Treatment</th>
+<th class='gt_col_heading gt_right' rowspan='1' colspan='1'>Standard difference*</th>
+<th class='gt_col_heading gt_right' rowspan='1' colspan='1'>Z score</th>
+</tr>
+<tbody class='gt_table_body'>
+<tr>
+<td class='gt_row gt_stub gt_left'>liberal</td>
+<td class='gt_row gt_right'>0.46596736</td>
+<td class='gt_row gt_right'>0.46903574</td>
+<td class='gt_row gt_right'>0.006136819</td>
+<td class='gt_row gt_right'>0.02994868</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>republican</td>
+<td class='gt_row gt_right gt_striped'>0.16722986</td>
+<td class='gt_row gt_right gt_striped'>0.18660218</td>
+<td class='gt_row gt_right gt_striped'>0.050137789</td>
+<td class='gt_row gt_right gt_striped'>0.24252154</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>obama.disapprove</td>
+<td class='gt_row gt_right'>0.27112609</td>
+<td class='gt_row gt_right'>0.29403953</td>
+<td class='gt_row gt_right'>0.049561295</td>
+<td class='gt_row gt_right'>0.23744501</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>ride.everyday</td>
+<td class='gt_row gt_right gt_striped'>0.84975676</td>
+<td class='gt_row gt_right gt_striped'>0.89973465</td>
+<td class='gt_row gt_right gt_striped'>0.151578308</td>
+<td class='gt_row gt_right gt_striped'>0.72285650</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>voted.2010</td>
+<td class='gt_row gt_right'>0.76522842</td>
+<td class='gt_row gt_right'>0.66018361</td>
+<td class='gt_row gt_right'>-0.237951502</td>
+<td class='gt_row gt_right'>-1.12123562</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>romney.voter</td>
+<td class='gt_row gt_right gt_striped'>0.24430406</td>
+<td class='gt_row gt_right gt_striped'>0.21542488</td>
+<td class='gt_row gt_right gt_striped'>-0.066708640</td>
+<td class='gt_row gt_right gt_striped'>-0.33702309</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>Hispanics.x</td>
+<td class='gt_row gt_right'>0.05815637</td>
+<td class='gt_row gt_right'>0.04865249</td>
+<td class='gt_row gt_right'>-0.070752759</td>
+<td class='gt_row gt_right'>-0.33457205</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>age</td>
+<td class='gt_row gt_right gt_striped'>44.66036876</td>
+<td class='gt_row gt_right gt_striped'>40.42895315</td>
+<td class='gt_row gt_right gt_striped'>-0.353256170</td>
+<td class='gt_row gt_right gt_striped'>-1.63407619</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>residency.new</td>
+<td class='gt_row gt_right'>8.21672601</td>
+<td class='gt_row gt_right'>7.07117516</td>
+<td class='gt_row gt_right'>-0.191389899</td>
+<td class='gt_row gt_right'>-0.90718118</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>hispanic.new</td>
+<td class='gt_row gt_right gt_striped'>0.02819709</td>
+<td class='gt_row gt_right gt_striped'>0.05102986</td>
+<td class='gt_row gt_right gt_striped'>0.114907675</td>
+<td class='gt_row gt_right gt_striped'>0.58292364</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>college</td>
+<td class='gt_row gt_right'>0.88598703</td>
+<td class='gt_row gt_right'>0.86471568</td>
+<td class='gt_row gt_right'>-0.064608656</td>
+<td class='gt_row gt_right'>-0.30233405</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>income.new</td>
+<td class='gt_row gt_right gt_striped'>144724.04374230</td>
+<td class='gt_row gt_right gt_striped'>138094.39974846</td>
+<td class='gt_row gt_right gt_striped'>-0.087469407</td>
+<td class='gt_row gt_right gt_striped'>-0.44455287</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>male</td>
+<td class='gt_row gt_right'>0.60445619</td>
+<td class='gt_row gt_right'>0.60165746</td>
+<td class='gt_row gt_right'>-0.005603986</td>
+<td class='gt_row gt_right'>-0.02692159</td>
+</tr>
+<tr>
+<td class='gt_row gt_stub gt_left'>white</td>
+<td class='gt_row gt_right gt_striped'>0.90962551</td>
+<td class='gt_row gt_right gt_striped'>0.83356174</td>
+<td class='gt_row gt_right gt_striped'>-0.238503801</td>
+<td class='gt_row gt_right gt_striped'>-1.24864724</td>
+</tr>
+</tbody>
+</table>
+<!--gt table end-->
+</div>
 <pre><code>## beginning inference</code></pre>
 <pre><code>##     variable subset   N                ate greater.p.value lesser.p.value
 ## 1   numberim    all 106 0.0898125707655309       0.0078125      0.9921875
@@ -502,14 +664,14 @@ $(document).ready(function () {
 ## Too many permutations to use exact method.
 ## Defaulting to approximate method.
 ## Increase maxiter to at least 9075135300 to perform exact estimation.</code></pre>
-<pre><code>##     variable    subset  N                 ate greater.p.value
-## 1   numberim all.prime 35  0.0169249529219276          0.2985
-## 2     Remain all.prime 36  0.0232323232323228          0.4385
-## 3 Englishlan all.prime 36 -0.0282828282828281          0.7051
+<pre><code>##     variable    subset  N                ate greater.p.value
+## 1   numberim all.prime 35 0.0169249529219276          0.3055
+## 2     Remain all.prime 36 0.0232323232323228          0.4388
+## 3 Englishlan all.prime 36 0.0282828282828281            0.29
 ##   lesser.p.value              x.sd            x.mean
-## 1         0.7015 0.199263349246521              0.55
-## 2         0.5615 0.288932765288298 0.395833333333333
-## 3         0.2949   0.3034196632776 0.277777777777778</code></pre>
+## 1         0.6945 0.199263349246521              0.55
+## 2         0.5612 0.288932765288298 0.395833333333333
+## 3           0.71   0.3034196632776 0.722222222222222</code></pre>
 <pre><code>## quartz_off_screen 
 ##                 2</code></pre>
 <pre><code>## quartz_off_screen 

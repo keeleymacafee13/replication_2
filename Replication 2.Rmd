@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
 library(ri)
 library(RItools)
 library(car)
@@ -37,17 +38,6 @@ white.dat = read.csv('dataverse_files/white_face_data.csv')
 ```
 
 
-```{r, echo=FALSE}
-##the following scripts will be executed
-source('dataverse_files/balance_check.r') ##executes balance tests
-source('dataverse_files/main_results.r')  ##produces ATE and car subanalysis
-source('dataverse_files/subset_inference.r')  ##produces dose effect and subgroup effects in supporting material
-source('dataverse_files/primetest.r') ##produces prime test in supporting material
-source('dataverse_files/output_create.r')  ##creates tables
-source('dataverse_files/outgraphic_single_pnas.r') ##produces graphics, expect face graphic
-source('dataverse_files/face_summary_pnas.r') ##creates face graphic
-```
-
 
 ```{r, echo=FALSE}
 ##balance_check.r
@@ -69,6 +59,21 @@ print(missing.balance.test)
 
 missing.balance.test = xBalance(fmla = missing ~ treatment, data = dat.t1, report = c("std.diffs","z.scores","adj.means","chisquare.test"),na.rm=T)
 print(missing.balance.test)
+
+
+```
+
+
+```{r, echo = FALSE}
+#Creating table 2 with gt
+xtable.use <- xtable.out.balance.text %>%
+  select(`treatment=0`, `treatment=1`, std.diff, z)
+
+xtable.use %>%
+  gt(rownames_to_stub = T) %>%
+  cols_label(`treatment=0`= "Control", `treatment=1`= "Treatment", std.diff = "Standard difference*", z = "Z score") %>%
+  tab_stubhead_label(label = "Condition") %>%
+  tab_header(title = "Table 2. Covariate balance across treatment conditions")
 ```
 
 
@@ -427,6 +432,7 @@ final.mat = as.data.frame(final.mat)
 colnames(final.mat) = c('variable','subset','N','ate','x.mean','x.sd','quantile.lower','quantile.upper')
 print(final.mat)
 final.mat.income = final.mat  ##for later
+
 ```
 
 ```{r, echo=FALSE}
@@ -533,7 +539,7 @@ for(subset in subsets){ ##b.only, complier, and non-compler subsets
  ##cumalative results output
  final.mat.use = rbind(final.mat.main,final.mat.prime)
 
- final.mat.use$greater.p.value = as.numeric(as.character(final.mat.use$greater.p.value)); final.mat.use$lesser.p.value = as.numeric(as.character(final.mat.use$lesser.p.value)); final.mat.use$ate = as.numeric(as.character(final.mat.use$ate)); final.mat.use$x.mean = as.numeric(as.character(final.mat.use$x.mean)); final.mat.use$x.sd = as.numeric(as.character(final.mat.use$x.sd)); final.mat.use$N = as.numeric(as.character(final.mat.use$N))
+final.mat.use$greater.p.value = as.numeric(as.character(final.mat.use$greater.p.value)); final.mat.use$lesser.p.value = as.numeric(as.character(final.mat.use$lesser.p.value)); final.mat.use$ate = as.numeric(as.character(final.mat.use$ate)); final.mat.use$x.mean = as.numeric(as.character(final.mat.use$x.mean)); final.mat.use$x.sd = as.numeric(as.character(final.mat.use$x.sd)); final.mat.use$N = as.numeric(as.character(final.mat.use$N))
  final.mat.use$p.value = final.mat.use$greater.p.value
 
  final.mat.redact = final.mat.use[,c('variable','subset','ate','p.value','x.mean','x.sd','N')]
