@@ -2,8 +2,14 @@
 title: "Replication 2"
 author: "Keeley MacAfee"
 date: "2/18/2019"
-output: html_document
+output: 
+  html_document
+citation_package: natbib
+bibliography: bibliography.bib
 ---
+
+## Abstract
+I replicate two tables and one figure from FINISH THIS
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -19,10 +25,12 @@ library(kableExtra)
 ```
 
 
+
 ```{r, echo=FALSE}
 #Assuming this might be important later on
 options(scipen = 999)  ##set for non-scientific notaion output
 ```
+
 
 
 ```{r echo = FALSE, message = FALSE}
@@ -327,40 +335,109 @@ final.mat.use$greater.p.value = as.numeric(as.character(final.mat.use$greater.p.
 
 ```{r echo = FALSE, message = FALSE, warning=FALSE}
 ## Creating table 1 with kable
-## Originally tried to use gt, but had a lot of difficulties formatting; kable is still not perfectly formatted but gave me an output closer to that in the paper 
-out.mat <- out.mat %>%
-  tail(5)
+## Originally tried to use gt, but had a lot of difficulties formatting; kable is still not perfectly formatted but gave me an output closer to that in the paper
+#EDIT: Had help from Preceptor and updated code to use gt; left kable code for reference
 
-kable(out.mat,
-      col.names = c("Question", "All respondents", "Waits on platform", "All respondents"),
-      caption = "Table 1. Experiment Results") %>%
-  kable_styling(full_width=TRUE)
+#out.mat <- out.mat %>%
+#  tail(5)
+
+#kable(out.mat,
+#      col.names = c("Question", "All respondents", "Waits on platform", "All respondents"),
+#      caption = "Table 1. Experiment Results") %>%
+#  kable_styling(full_width=TRUE)
   
 ```
 
+## Table 1
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE, results="asis"}
+#Table 1 with gt
+t <- as_tibble(out.table) %>%
+  tail(5)
+  
 
-```{r echo = FALSE, message = FALSE, warning=FALSE}
-## Creating table 2 with kable
+# Had help from Preceptor in office hours to work through some of the gt code.
+
+gt(data = t) %>%
+  tab_header(title = "Table 1. Experiment results") %>%
+  tab_source_note(source_note = 'In the first All respondents" column, ATE represents responses in T2-T1 for the treatment group compared with the control group for the entire experimental sample. Positive values mean a more politically conservative response. In the "Waits on platform" column, CATEs are the Conditional Average Treatment Effects for persons who said they stand on the platform, rather than wait in their cars. In the second "All Respondents" column, T1 levels and SDs for each variable for all respondents. All variables scaled 0') %>%
+  tab_footnote(
+    footnote = "P values from a one-tailed test against the Null Hypothesis of no effect are in parentheses.",
+    locations = cells_data(columns = 2, rows = 1)) %>% 
+  tab_footnote(
+    footnote = "Each pf the questions allowed responses on a five-point scale ranging from strongly agree to strongly disagree (exact answers were changed to be appropriate to the actual question)",
+    locations = cells_data(columns = 1, rows = 2))
+  
+```
+
+## Table 2
+
+```{r echo = FALSE, message = FALSE, warning=FALSE, results="asis"}
+## Creating table 2 with gt
 
 ## Select out desired columns; fourth (empty) column in the original data complicated table-making process
+
 xtable.use <- xtable.out.balance.text %>%
   select(`treatment=0`, `treatment=1`, std.diff, z)
 
-## Similar to table 1, I originally tried to use gt but ran into some problems; my original code is below
+#The following is from Preceptor's code
+x <- xtable.use %>%
+  as_tibble(out.balance.test[1]$results[,,1][, 1:4]) %>% 
+  
+  #Setting the n values in the table. 
+  add_row(`treatment=0` = 117, `treatment=1` = 103) %>% 
+  
+  # Renaming the rows was the original process I had trouble with when trying to use gt. I tried to find a way to rename them within gt rather than doing it before, but it is evidently easier to format the data in a table when renaming beforehand (Preceptor code). 
+  
+  mutate(condition = c("Liberal", "Republican", "Obama disapprove", 
+                  "Ride MBTA every day", "Voted 2010", "Romney voter", "Hispanic threat", 
+                   "Age", "Residency year", "College", "Male",  
+                   "Hispanic", "White", "Income", "n"))
 
-#xtable.use %>%
-# gt(rownames_to_stub = T) %>%
-# cols_label(`treatment=0`= "Control", `treatment=1`= "Treatment", std.diff = "Standard difference*", z = "Z score") %>%
- # tab_stubhead_label(label = "Condition") %>%
- # tab_header(title = "Table 2. Covariate balance across treatment conditions")
+x %>%
+  gt() %>% 
+  tab_header(title = "Table 2. Covariate balance across treatment conditions") %>% 
+  
+  cols_move_to_start(columns = vars(condition)) %>% 
+  
+  # Renaming the columns. 
+  
+  cols_label(condition =  "Condition",        
+             `treatment=0` = "Control",
+             `treatment=1` = "Treatment",
+             std.diff = "Standard difference",       
+             z = "Z Score") %>% 
+  
+  # Formatting the numbers in the table. Originally, I had tried to format the numbers using the renamed column names as arguments, but reading Preceptor's comments clarified that the original column names have to be used. 
+  
+  fmt_number(columns = vars(`treatment=0`, `treatment=1`, std.diff, z),
+             decimals = 2) %>% 
+  fmt_number(columns = vars(`treatment=0`, `treatment=1`),
+             decimals = 0,
+             rows = c(14, 15)) %>% 
+  fmt_missing(columns = vars(std.diff, z), rows = 15, missing_text = "") %>% 
+  
+  # Adding footnotes. ask about this.  
+  
+  tab_footnote(
+    footnote = "Difference in standardized units.",
+    locations = cells_column_labels(
+      columns = vars(std.diff))) %>% 
+  
+  tab_footnote(
+    footnote = "Mean response values for the pretreatment variables accounting for stratification into train stations. All variables are 0 and 1 variables, except for Hispanic threat, which is a seven-point scale indicating how threatening respondents find Hispanics, recoded 0--1; residency, which is measured in years; and income, which is annual income in dollars.",
+    locations = cells_data(
+      columns = vars(condition),
+      rows = 1))
+
 
 ## Kable
 ## Had some issues formatting row/column names and order but was not sure how to recode them without messing up the Enos code or output 
-kable(xtable.use, col.names = c(" ", " ", " ", " "), digits = 2, caption = "Table 2. Covariate balance across treatment conditions") %>%
-  add_header_above(c("Condition" = 1, "Control" = 1, "Treatment" = 1, "Standard difference*" = 1, "Z score" = 1)) %>%
- kable_styling("striped", full_width = FALSE) %>%
-  add_footnote(c("Difference in standardized units.", "Mean response values for pretreatment variables accounting for stratification into train stations. All variables are 0 and 1 variables, except for Hispanic threat, which is a seven-point scale indicating how threatening respondents find Hispanics, recoded 0–1; residency, which is measured in years; and income, which is annual income in dollars."), notation = "symbol")
+
+#kable(xtable.use, col.names = c(" ", " ", " ", " "), digits = 2, caption = "Table 2. Covariate balance across treatment conditions") %>%
+ # add_header_above(c("Condition" = 1, "Control" = 1, "Treatment" = 1, "Standard difference*" = 1, "Z score" = 1)) %>%
+# kable_styling("striped", full_width = FALSE) %>%
+#  add_footnote(c("Difference in standardized units.", "Mean response values for pretreatment variables accounting for stratification into train stations. All variables are 0 and 1 variables, except for Hispanic threat, which is a seven-point scale indicating how threatening respondents find Hispanics, recoded 0–1; residency, which is measured in years; and income, which is annual income in dollars."), notation = "symbol")
 ```
 
 
@@ -644,9 +721,9 @@ final.mat.income = final.mat  ##for later
 ```
 
 
+## Figure 2
 
-
-```{r echo = FALSE, message = FALSE, results='asis', warning=FALSE}
+```{r echo = FALSE, message = FALSE, results='asis', warning=FALSE, fig.cap= "Fig. 2.    Time effects. ATE and 95% confidence intervals for 3-d treatment (solid circle) and 10-d treatment  (open circle). P values from top to bottom generated from a two-tailed test against the Null Hypothesis of no difference in effect between the 3-d and 10-d treatments are P = 0.195, 0.094, and 0.305. n = 55 for 3-d dose and 54 for 10-d dose. Confidence intervals are constructed by drawing the 2.5% and 97.5% quantiles from the randomized distribution."}
 ### Graphic creation (help from Gabe)
 
 # Graph presets
@@ -720,6 +797,9 @@ for(i in 1:length(var.names)){
 
 ## Was not sure how or where to add a title/notes.
 ```
+
+
+
 ```{r include=FALSE, echo=FALSE}
 ## Note: could not find the code that 
 # is responsible for creating Table 3,
@@ -728,3 +808,4 @@ for(i in 1:length(var.names)){
 ```
 
 
+## References 
