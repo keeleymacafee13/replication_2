@@ -3,6 +3,8 @@ title: "Commentary on Replication 2: Extension"
 author: "Keeley MacAfee"
 date: "2/25/2019"
 output: html_document
+citation_package: natbib
+bibliography: bibliography.bib
 ---
 
 
@@ -31,46 +33,53 @@ library(tidyverse)
 
 raw.data <- read_csv("dataverse_files/pnas_data.csv")
 
-#Elected to use only magnitude of change because the connotations of the questions were different. ex: third question different from the first two; wanted to just look at how much attitudes changed in general rather than distinguishing between exclusionary vs softening attitudes as a result of exposure to outgroups 
+# I elected to use only magnitude of change because I found the connotations of the questions to be different. For example, the change in response to the third question has a different meaning than a change in response to the first two.
+# I just want to look at how much attitudes changed in general rather than distinguishing between exclusionary vs softening attitudes as a result of exposure to outgroups. I felt that Enos on one hand made the claim that people became more exclusionary but on the other hand argued that prolonged exposure could also make people more accepting. 
 
+#This is data for all respondents. 
 x <- raw.data %>%
 select(X1, treated_unit, numberim.x, numberim.y, Remain.x, Remain.y, Englishlan.x, Englishlan.y, age, education, income, treatment) %>%
+  # Here, I calculate the change in attitude by each question as well as calculate 
+  # the aggregate change in responses to all questions.
   mutate(number.im.change = numberim.y - numberim.x,
          remain.change = Remain.y - Remain.x,
          english.change = Englishlan.y - Englishlan.x,
          q.full.x = numberim.x + Remain.x + Englishlan.x,
          q.full.y = numberim.y + Remain.y + Englishlan.y,
          q.full.change = q.full.y - q.full.x) %>%
+  # To measure magnitude of change, I take the absolute value of the change in response for all questions. 
   mutate(mag.change = abs(q.full.change)) %>%
   filter(q.full.change != "NA")
 
+#Control group
 control <- x %>%
   filter(treatment == 0)
 
+#Treated group
 treated <- x %>%
   filter(treatment == 1)
 ```
 
 
 
-#Raw Data Regressions
-In these three regressions, I use age, education, and income separately to determine if they impacted all of the respondents (control group and treated group).
+#All Respondents Regressions
+In these three regressions, I use age, education, and income separately to determine if they had an impact on the magnitude of change in attitude among all of the respondents (control group and treated group).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-#Age: magnitude
-#No significance 
+# All respondents: age/magnitude
+# No significance 
 # lm(mag.change ~ age, data = x) %>%
 #   summary()
 
 ggplot(x, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xlab("Age") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Age: All Respondents")
 ```
 
-In this case, the intercept has a significant p value (0.002) but age is insignificant (p = 0.56). 
+In this case, age is insignificant (p = 0.56). 
 
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-#Education: magnitude
+# All respondents: education/magnitude
 # lm(mag.change ~ education, data = x) %>%
 #   summary()
 
@@ -82,7 +91,7 @@ In this case, education is insignificant (p = 0.63).
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-#Income: magnitude
+#All respondents: income/magnitude
 # lm(mag.change ~ income, data = x) %>%
 #   summary()
 
@@ -93,14 +102,18 @@ In this case, income is insignificant (p = 0.51).
 
 
 #Control Group Regressions
+
+In these three regressions, I use age, education, and income separately to determine if they had an impact on the magnitude of change in attitude among the control group. 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-#Control: age
+#Control: age/magnitude
 # lm(mag.change ~ age, data = control) %>%
 #   summary()
 
 ggplot(treated, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xlab("Age") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Age: Control")
 ```
 
+In this case, age is insignificant (p = 0.70). 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #Control: education
@@ -110,6 +123,7 @@ ggplot(treated, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xla
 ggplot(treated, aes(x = education, y = mag.change)) + geom_smooth(method = "lm") + xlab("Education") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Education: Control")
 ```
 
+In this case, education is insignificant (p = 0.18). 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #Control: income
@@ -119,8 +133,11 @@ ggplot(treated, aes(x = education, y = mag.change)) + geom_smooth(method = "lm")
 ggplot(treated, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Income: Control")
 ```
 
+In this case, income is insignificant (p = 0.08).
 
-# Treatment Group Regressions
+# Treated Group Regressions
+
+In these three regressions, I use age, education, and income separately to determine if they had an impact on the magnitude of change in attitude among the treated group. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #Treatment: age
@@ -130,6 +147,7 @@ ggplot(treated, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + 
 ggplot(treated, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xlab("Age") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Age: Treatment")
 ```
 
+In this case, age is insignificant (p = 0.56).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #Treatment: education
@@ -139,6 +157,7 @@ ggplot(treated, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xla
 ggplot(treated, aes(x = education, y = mag.change)) + geom_smooth(method = "lm") + xlab("Education") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Education: Treatment")
 ```
 
+In this case, education is insignificant (p = 0.60).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #Treatment: income
@@ -147,6 +166,8 @@ ggplot(treated, aes(x = education, y = mag.change)) + geom_smooth(method = "lm")
 
 ggplot(treated, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Income: Treatment")
 ```
+
+In this case, income is insignificant (p = 0.38).
 
 # Bonus Regression 
 
@@ -157,7 +178,20 @@ ggplot(treated, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + 
 # lm(q.full.change ~ income, data = x) %>%
 #   summary()
 
-ggplot(x, aes(x = income, y = q.full.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Change") + ggtitle("Raw Change by Age: All Respondents")
+ggplot(x, aes(x = income, y = q.full.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Change") + ggtitle("Raw Change by Income: All Respondents")
+
+# After the magnitude by each factor was insignificant, I wanted to determine 
+# if using the direction of attitudes made a difference. To my surprise, income 
+# was the only factor with statistical significance. 
 ```
 
+In this case, the intercept has a significant p value (0.01), and income is also significant (p =0.008). This regression shows that changes in income are related to changes in the direction, but not necessarily to the magnitude, of attitude shifts among respondents. 
+
+# Conclusion
+My hypothesis that age, education, and income would impact the magnitude of respondents' change in attitude proved to have no statistical support. I originally believed that these factors, age especially, would affect respondents' responses to the treatment, with younger people being more impressionable in either direction. While age and magnitude have a slight negative correlation in all respondents, the control group, and the treatment group, there is still high variance in each case.  
+
+# References
+```{r, echo =FALSE, message=FALSE}
+# I am not sure why, but the references from the bibliography.bib file do not show up. I copied Preceptor's bibliography and his title format at the beginning of the rmd. 
+```
 
