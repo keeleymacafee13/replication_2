@@ -1,0 +1,163 @@
+---
+title: "Commentary on Replication 2: Extension"
+author: "Keeley MacAfee"
+date: "2/25/2019"
+output: html_document
+---
+
+
+# Abstract
+In this commentary, I aim to expand upon Ryan Enos' article "Causal effect of intergroup contact on exclusionary attitudes." Using the data he collected, I examine the magnitude of the change in response to the three survey questions Enos asked regarding opinions on immigration. In this case, I chose to use the magnitude of change to eliminate the inconsistency in measuring the change in response on the 1-5 strongly agree to strongly disagree scale, as the meaning of positive or negative change in response varies between questions. Thus, by examining age, education, and income, I determine which of these factors, if any, affect respondents' malleability in either direction.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ri)
+library(RItools)
+library(car)
+library(xtable)
+library(effects)
+library(RColorBrewer)
+library(gt)
+library(kableExtra)
+library(rstanarm)
+library(tidyverse)
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Load data in. Only need full data set.
+
+raw.data <- read_csv("dataverse_files/pnas_data.csv")
+
+#Elected to use only magnitude of change because the connotations of the questions were different. ex: third question different from the first two; wanted to just look at how much attitudes changed in general rather than distinguishing between exclusionary vs softening attitudes as a result of exposure to outgroups 
+
+x <- raw.data %>%
+select(X1, treated_unit, numberim.x, numberim.y, Remain.x, Remain.y, Englishlan.x, Englishlan.y, age, education, income, treatment) %>%
+  mutate(number.im.change = numberim.y - numberim.x,
+         remain.change = Remain.y - Remain.x,
+         english.change = Englishlan.y - Englishlan.x,
+         q.full.x = numberim.x + Remain.x + Englishlan.x,
+         q.full.y = numberim.y + Remain.y + Englishlan.y,
+         q.full.change = q.full.y - q.full.x) %>%
+  mutate(mag.change = abs(q.full.change)) %>%
+  filter(q.full.change != "NA")
+
+control <- x %>%
+  filter(treatment == 0)
+
+treated <- x %>%
+  filter(treatment == 1)
+```
+
+
+
+#Raw Data Regressions
+In these three regressions, I use age, education, and income separately to determine if they impacted all of the respondents (control group and treated group).
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Age: magnitude
+#No significance 
+# lm(mag.change ~ age, data = x) %>%
+#   summary()
+
+ggplot(x, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xlab("Age") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Age: All Respondents")
+```
+
+In this case, the intercept has a significant p value (0.002) but age is insignificant (p = 0.56). 
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Education: magnitude
+# lm(mag.change ~ education, data = x) %>%
+#   summary()
+
+ggplot(x, aes(x = education, y = mag.change)) + geom_smooth(method = "lm") + xlab("Education") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Education: All Respondents")
+```
+
+In this case, education is insignificant (p = 0.63).
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Income: magnitude
+# lm(mag.change ~ income, data = x) %>%
+#   summary()
+
+ggplot(x, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Income: All Respondents")
+```
+
+In this case, income is insignificant (p = 0.51). 
+
+
+#Control Group Regressions
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Control: age
+# lm(mag.change ~ age, data = control) %>%
+#   summary()
+
+ggplot(treated, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xlab("Age") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Age: Control")
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Control: education
+# lm(mag.change ~ education, data = control) %>%
+#   summary()
+
+ggplot(treated, aes(x = education, y = mag.change)) + geom_smooth(method = "lm") + xlab("Education") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Education: Control")
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Control: income
+# lm(mag.change ~ income, data = control) %>%
+#   summary()
+
+ggplot(treated, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Income: Control")
+```
+
+
+# Treatment Group Regressions
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Treatment: age
+# lm(mag.change ~ age, data = treated) %>%
+#   summary()
+
+ggplot(treated, aes(x = age, y = mag.change)) + geom_smooth(method = "lm") + xlab("Age") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Age: Treatment")
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Treatment: education
+# lm(mag.change ~ education, data = treated) %>%
+#   summary()
+
+ggplot(treated, aes(x = education, y = mag.change)) + geom_smooth(method = "lm") + xlab("Education") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Education: Treatment")
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Treatment: income
+# lm(mag.change ~ income, data = treated) %>%
+#   summary()
+
+ggplot(treated, aes(x = income, y = mag.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Magnitude of Change") + ggtitle("Magnitude of Change by Income: Treatment")
+```
+
+# Bonus Regression 
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#Income: q full (KEEP AS BONUS...SIGNIFICANT)
+# lm(q.full.change ~ income, data = x) %>%
+#   summary()
+
+ggplot(x, aes(x = income, y = q.full.change)) + geom_smooth(method = "lm") + xlab("Income") + ylab("Change") + ggtitle("Raw Change by Age: All Respondents")
+```
+
+
