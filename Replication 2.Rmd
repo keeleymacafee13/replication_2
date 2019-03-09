@@ -11,6 +11,8 @@ bibliography: bibliography.bib
 ## Abstract
 I replicate two tables and one figure from FINISH THIS
 
+Good that you have an abstract, probably should be finished though...
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
@@ -51,6 +53,7 @@ white.dat = read.csv('dataverse_files/white_face_data.csv')
 
 
 # Check to see if randomization created balanced samples in Enos experiment
+# good to have comments like this
 # Calculating mean differences 
 out.balance.test = xBalance(fmla = treatment ~ liberal+republican+obama.disapprove+ride.everyday+voted.2010+romney.voter+Hispanics.x+age+residency.new+hispanic.new+college+income.new+male+white, data = dat.all, report = c("std.diffs","z.scores","adj.means","chisquare.test"), strata = factor(dat.all$station))
 #print(out.balance.test)
@@ -68,6 +71,7 @@ missing.balance.test = xBalance(fmla = missing ~ treatment, data = dat.t1, repor
 #print(missing.balance.test)
 
 #Commented out printing commands so code would not appear in the knitted html document 
+#good
 ```
 
 
@@ -93,6 +97,8 @@ subsets = c('all','no.car')
 cat('beginning inference \n')
 
 #Forloop to execute subsetting code repeatedly in this case for all and no car data 
+# it might be useful to have some comments in this loop talking about what it is doing 
+# based on what was talked about in class, or some questions if it still not clear
 for(subset in subsets){
 
 	out.mat = matrix(nrow = length(repeats), ncol = 8)
@@ -357,6 +363,7 @@ t <- as_tibble(out.table) %>%
   
 
 # Had help from Preceptor in office hours to work through some of the gt code.
+# Good, thanks for letting me know, helps on the grading front
 
 gt(data = t) %>%
   tab_header(title = "Table 1. Experiment results") %>%
@@ -368,6 +375,8 @@ gt(data = t) %>%
     footnote = "Each pf the questions allowed responses on a five-point scale ranging from strongly agree to strongly disagree (exact answers were changed to be appropriate to the actual question)",
     locations = cells_data(columns = 1, rows = 2))
   
+  # in the future tables you'll want to try to format the column headers more nicely
+  # or eliminate that row altogether, but aside from that, this is a great looking table!
 ```
 
 ## Table 2
@@ -438,6 +447,8 @@ x %>%
  # add_header_above(c("Condition" = 1, "Control" = 1, "Treatment" = 1, "Standard difference*" = 1, "Z score" = 1)) %>%
 # kable_styling("striped", full_width = FALSE) %>%
 #  add_footnote(c("Difference in standardized units.", "Mean response values for pretreatment variables accounting for stratification into train stations. All variables are 0 and 1 variables, except for Hispanic threat, which is a seven-point scale indicating how threatening respondents find Hispanics, recoded 0–1; residency, which is measured in years; and income, which is annual income in dollars."), notation = "symbol")
+
+# Super nice table and elegant code creating it
 ```
 
 
@@ -796,6 +807,7 @@ for(i in 1:length(var.names)){
 # dev.off()
 
 ## Was not sure how or where to add a title/notes.
+# Not a huge problem since this is pretty much how it looks in the paper
 ```
 
 
@@ -805,7 +817,12 @@ for(i in 1:length(var.names)){
 # is responsible for creating Table 3,
 # but once we go over this more in class
 # and next week I will be sure to have it!
+
+# not sure this was easily accessible, I had trouble finding it
 ```
 
 
 ## References 
+References?
+
+Great notes for replicated tables and figure. Overall, excellent comments throughout original Enos code. Might be useful to include comments/notes from class explaining the more complicated parts of the code. Jotting down your thoughts like you did really helps me when looking at your code/the decisions you made.
