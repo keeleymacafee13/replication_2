@@ -11,6 +11,8 @@ bibliography: bibliography.bib
 # Abstract
 In this commentary, I aim to expand upon Ryan Enos' article "Causal effect of intergroup contact on exclusionary attitudes." Using the data he collected, I examine the magnitude of the change in response to the three survey questions Enos asked regarding opinions on immigration. In this case, I chose to use the magnitude of change to eliminate the inconsistency in measuring the change in response on the 1-5 strongly agree to strongly disagree scale, as the meaning of positive or negative change in response varies between questions. Thus, by examining age, education, and income, I determine which of these factors, if any, affect respondents' malleability in either direction.
 
+Good abstract
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
@@ -35,6 +37,11 @@ raw.data <- read_csv("dataverse_files/pnas_data.csv")
 
 # I elected to use only magnitude of change because I found the connotations of the questions to be different. For example, the change in response to the third question has a different meaning than a change in response to the first two.
 # I just want to look at how much attitudes changed in general rather than distinguishing between exclusionary vs softening attitudes as a result of exposure to outgroups. I felt that Enos on one hand made the claim that people became more exclusionary but on the other hand argued that prolonged exposure could also make people more accepting. 
+
+# Nice commenting
+
+# Might want to clarify and talk a little bit more about your choice to use magnitude of chance and
+# what that means for the research overall
 
 #This is data for all respondents. 
 x <- raw.data %>%
@@ -183,12 +190,18 @@ ggplot(x, aes(x = income, y = q.full.change)) + geom_smooth(method = "lm") + xla
 # After the magnitude by each factor was insignificant, I wanted to determine 
 # if using the direction of attitudes made a difference. To my surprise, income 
 # was the only factor with statistical significance. 
+
+# Good looking plot for the regressions, it would be useful for the reader is they contained a bit more
+# information like what type of regression is being used and any other useful info in a footnote so there
+# is no guessing
 ```
 
 In this case, the intercept has a significant p value (0.01), and income is also significant (p =0.008). This regression shows that changes in income are related to changes in the direction, but not necessarily to the magnitude, of attitude shifts among respondents. 
 
 # Conclusion
 My hypothesis that age, education, and income would impact the magnitude of respondents' change in attitude proved to have no statistical support. I originally believed that these factors, age especially, would affect respondents' responses to the treatment, with younger people being more impressionable in either direction. While age and magnitude have a slight negative correlation in all respondents, the control group, and the treatment group, there is still high variance in each case.  
+
+Excellent idea to include a conclusion summarizing hypotheses and results!
 
 # References
 ```{r, echo =FALSE, message=FALSE}
